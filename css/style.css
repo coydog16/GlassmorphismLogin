@@ -23,6 +23,22 @@ body::before
   background-size: cover;
   background-position: center;
 }
+body::after
+{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url(/img/lightForest.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: 0.5s;
+}
+body.signup::after
+{
+  opacity: 1;
+}
 .container
 {
   position: relative;
@@ -35,6 +51,11 @@ body::before
   align-items: center;
   z-index: 1000;
   transition: 0.5s;
+  overflow: hidden;
+}
+body.signup .container
+{
+  height: 440px;
 }
 .container::before
 {
@@ -45,6 +66,10 @@ body::before
   background: repeating-conic-gradient(from var(--a),#45f3ff 0%,#45f3ff 10%,transparent 10%,transparent 80%,#45f3ff 100%);
   border-radius: 20px;
   animation: animate 2.5s linear infinite;
+}
+body.signup .container::before
+{
+  filter: hue-rotate(140deg)
 }
 @property --a
 {
@@ -92,6 +117,26 @@ body::before
   background-position: center;
   filter: blur(15px);
 }
+.container span::after
+{
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: url(/img/nightForest.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+}
+body.signup .container span::before,
+body.signup .container span::after
+{
+  background: url(/img/lightForest.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+}
 form
 {
   position: absolute;
@@ -102,7 +147,20 @@ form
   flex-direction: column;
   width: 100%;
   gap: 15px;
-  transition: 0.5;
+  transition: 0.5s;
+}
+form#signupForm
+{
+  left: 100%;
+}
+body.signup form#signinForm
+{
+  left: -100%;
+}
+body.signup form#signupForm
+{
+  left: 0;
+
 }
 form h2
 {
@@ -146,4 +204,9 @@ form .inputBox input::placeholder
 {
   color: rgba(255,255,255,0.5);
 }
-10:50
+form .inputBox input[type="submit"]
+{
+  background: #2196f3;
+  font-weight: 500;
+  cursor: pointer;
+}
